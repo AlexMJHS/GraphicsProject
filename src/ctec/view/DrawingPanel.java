@@ -108,6 +108,7 @@ public class DrawingPanel extends JPanel
 			int red = (int)(Math.random() * 256);
 			int green = (int)(Math.random() * 256);
 			int blue = (int)(Math.random() * 256);
+			
 			mainGraphics.setColor(new Color(red, green, blue));
 			mainGraphics.setStroke(new BasicStroke(randomStroke));
 			
@@ -115,9 +116,28 @@ public class DrawingPanel extends JPanel
 		}
 	}
 	
-	private void drawShape(Graphics2D mainGraphics, ArrayList shapeList)
+	private void drawShapes(Graphics2D mainGraphics, ArrayList shapeList)
 	{
-		for()
+		for(Object currentShape : shapeList)
+		{
+			currentShape = (Shape) currentShape;
+			int penSize = (int)(Math.random() * 10) +3;
+			int red = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			int alpha = (int)(Math.random() * 255);
+			
+			mainGraphics.setColor(new Color(red, green, blue, alpha));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			if(currentShape instanceof Polygon)
+			{
+				mainGraphics.draw((Shape)currentShape);
+			}
+			else
+			{
+				mainGraphics.fill((Shape)currentShape);
+			}
+		}
 	}
 	
 	public void clear()
