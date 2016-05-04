@@ -17,7 +17,7 @@ public class GraphPanel extends JPanel
 		super.paintComponent(currentGraphics);
 		for(int index = 0; index < graphSource.length; index++)
 		{
-			//Draw a rectangle for each val in the array.
+			//Draw a rectangle for each value in the array.
 		}
 	}
 }
