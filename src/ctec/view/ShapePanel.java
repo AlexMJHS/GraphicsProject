@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
@@ -134,5 +135,95 @@ public class ShapePanel extends JPanel
 			
 			mainGraphics.draw(current);
 		}
+		
+		for(Ellipse2D current : ellipseList)
+		{
+			int red = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			
+			int penSize = (int)(Math.random() * 10) + 3;
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			mainGraphics.draw(current);
+		}
+		
+		for(Rectangle current : rectangleList)
+		{
+			int red = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			
+			int penSize = (int)(Math.random() * 10) + 3;
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			mainGraphics.draw(current);
+		}
+		
+		for(Rectangle current : squareList)
+		{
+			int red = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			
+			int penSize = (int)(Math.random() * 10) + 3;
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			mainGraphics.draw(current);
+		}
+		
+		for(Ellipse2D current : circleList)
+		{
+			int red = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			
+			int penSize = (int)(Math.random() * 10) + 3;
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			mainGraphics.draw(current);
+		}
+		
+		//Cleaner code, but same code.
+		drawShapes(mainGraphics, circleList);
+		drawShapes(mainGraphics, ellipseList);
+		drawShapes(mainGraphics, squareList);
+		drawShapes(mainGraphics, rectangleList);
+		drawShapes(mainGraphics, triangleList);
+		drawShapes(mainGraphics, polygonList);
+	}
+	
+	private void drawShapes(Graphics2D mainGraphics, ArrayList shapeList)
+	{
+		for(Object currentShape : shapeList)
+		{
+			currentShape = (Shape) currentShape;
+			int red = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			int penSize = (int)(Math.random() * 10) + 3;
+			int alpha = (int)(Math.random() * 255);
+			
+			mainGraphics.setColor(new Color(red, green, blue, alpha));
+			mainGraphics.setStroke(new BasicStroke(penSize));
+			if(currentShape instanceof Polygon)
+			{
+				mainGraphics.draw((Shape)currentShape);
+			}
+			else
+			{
+				mainGraphics.fill((Shape)currentShape);
+			}
+		}
+	}
+	
+	public void clear()
+	{
+		polygonList.clear();
+		triangleList.clear();
+		circleList.clear();
+		squareList.clear();
+		rectangleList.clear();
+		ellipseList.clear();
 	}
 }
