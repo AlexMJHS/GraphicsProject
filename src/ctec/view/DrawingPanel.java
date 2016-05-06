@@ -28,6 +28,7 @@ public class DrawingPanel extends JPanel
 	private JButton drawTriangleButton;
 	private JButton drawEllipseButton;
 	private JButton drawPolygonButton;
+	private GraphPanel graphPanel;
 	private ArrayList<Rectangle> rectangleList;
 	
 	public DrawingPanel(GraphicsController baseController)
@@ -35,16 +36,21 @@ public class DrawingPanel extends JPanel
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		shapePanel = new ShapePanel();
-		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 24, SpringLayout.WEST, this);
+		graphPanel = new GraphPanel();
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 6, SpringLayout.EAST, graphPanel);
+		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 22, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, 205, SpringLayout.WEST, this);
 		rectangleList = new ArrayList<Rectangle>();
 		drawRectangleButton = new JButton("Draw the rectangle");
+		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -23, SpringLayout.NORTH, drawRectangleButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -23, SpringLayout.NORTH, drawRectangleButton);
 		drawSquareButton = new JButton("Draw the square");
 		drawTriangleButton = new JButton("Draw the triangle");
 		drawPolygonButton = new JButton("Draw the polygon");
+		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 0, SpringLayout.WEST, drawPolygonButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, -187, SpringLayout.NORTH, drawPolygonButton);
-		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, 279, SpringLayout.EAST, drawPolygonButton);
 		drawCircleButton = new JButton("Draw the circle");
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, 0, SpringLayout.EAST, drawCircleButton);
 		drawEllipseButton = new JButton("Draw the Ellipse");
 		
 		setupPanel();
@@ -62,6 +68,7 @@ public class DrawingPanel extends JPanel
 		this.add(drawTriangleButton);
 		this.add(drawSquareButton);
 		this.add(shapePanel);
+		this.add(graphPanel);
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
